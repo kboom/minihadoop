@@ -1,0 +1,9 @@
+---
+- set_fact:
+    hadoop_master: "{{ groups['namenodes'] }}"
+
+- set_fact:
+    hadoop_slave_nodes: "{{ groups['datanodes']|map('extract', hostvars,'ansible_hostname')|list }}"
+
+- debug:
+    msg: "Hadoop master: {{ hadoop_master }}"

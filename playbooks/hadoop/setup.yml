@@ -1,3 +1,11 @@
 ---
-- roles:
-    - andrewrothstein.hadoop
+- hosts: namenodes
+  become: yes
+  roles:
+    - { role: 'grycap.hadoop', hadoop_type_of_node: master }
+
+- hosts: datanodes
+  become: yes
+  roles:
+    - { role: 'grycap.hadoop', hadoop_type_of_node: slave }
+
